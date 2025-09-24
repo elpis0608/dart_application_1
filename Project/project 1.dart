@@ -1,8 +1,8 @@
 void main() {
-  int score = 84;
-  String result;
+  int score = 84;       //int타입
+  String result;        //String타입
 
-  if (score < 0 || score > 100) {
+  if (score < 0 || score > 100) {         // 1~100까지 점수 조건 설정
     result = '점수 오류';
   } else if (score >= 90) {
     result = 'A';
