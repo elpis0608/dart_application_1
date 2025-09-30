@@ -26,11 +26,12 @@ List<StudentScore> loadStudentData(String filePath) {
     final lines = file.readAsLinesSync();
 
     for (var line in lines) {
+      if (line.isEmpty) continue;
       final parts = line.split(',');
       if (parts.length != 2) throw FormatException('잘못된 데이터 형식: $line');
 
-      String name = parts[0].trim();
-      int score = int.parse(parts[1].trim());
+      String name = parts[0];
+      int score = int.parse(parts[1]);
       students.add(StudentScore(name, score));
     }
   } catch (e) {
@@ -40,3 +41,12 @@ List<StudentScore> loadStudentData(String filePath) {
   return students;
 }
 
+void saveResults(String filePath, String content) {
+  try {
+    final file = File(filePath);
+    file.writeAsStringSync(content);
+    print("저장이 완료되었습니다.");
+  } catch (e) {
+    print("저장에 실패했습니다: $e");
+  }
+}
